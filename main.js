@@ -54,6 +54,22 @@ function createNewTweet () {
     const ico2 = document.createElement("i");
     ico2.classList.add(`${dataTweet[i]["retweet"]}`);
     ico2.classList.add("fa-retweet");
+    ico2.addEventListener('click', (e) => {
+      let like = 'far';
+      let retweet = 'fas';
+      let newTweet = new Tweet(
+        dataTweet[i].username,
+        dataTweet[i].tweet,
+        like,
+        retweet
+      );
+      dataTweet.unshift(newTweet);
+      let container = document.querySelector('#content-newtweet');
+
+      clearLibrary(container);
+      createNewTweet();
+    });
+
     btntweet.appendChild(ico2);
     container.appendChild(btntweet);
     
