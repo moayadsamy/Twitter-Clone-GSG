@@ -16,10 +16,14 @@ function addNewTweet() {
   let retweet = "fas";
   let username = _username.value
   let tweet = _tweet.value
-  console.log(dataTweet)
+  console.log("new",dataTweet)
   let newTweet = new Tweet(username, tweet, like, retweet);
   dataTweet.unshift(newTweet);
 
+  let container = document.querySelector("#content-newtweet");
+
+
+  clearLibrary(container);
   createNewTweet();
 
 }
@@ -52,10 +56,28 @@ function createNewTweet () {
     ico2.classList.add("fa-retweet");
     btntweet.appendChild(ico2);
     container.appendChild(btntweet);
+    
+    ico1.addEventListener('click', (e) => {
+      console.log(e.target.parentNode.parentNode);
+      ico1.classList.remove("fa-heart");
+      ico1.classList.add('love')
+      ico1.classList.add("fa");
+      ico1.classList.add("fa-solid");
+      ico1.classList.add("fa-heart");
+    });
   }
 }
+
+
+function clearLibrary(container) {
+  while (container.firstChild) {
+    container.removeChild(container.firstChild);
+  }
+}
+
 btnSubmit.addEventListener("click",(e)=>{
   e.preventDefault()
   addNewTweet()
 }) ;
+
 
